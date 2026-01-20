@@ -18,9 +18,19 @@ fetch("/tiket-event/backend/api/events.php")
                 <p>Tanggal: ${event.event_date}</p>
                 <p>Harga: Rp ${event.price}</p>
                 <p>Sisa Kuota: ${event.quota}</p>
+
+                <button onclick="bookEvent(${event.id})">
+                    Pesan Tiket
+                </button>
+
                 <hr>
             `;
             container.appendChild(div);
         });
     });
+
+function bookEvent(eventId) {
+    window.location.href = "pages/book.html?event_id=" + eventId;
+}
+
 </script>
