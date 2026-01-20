@@ -1,0 +1,26 @@
+<h2>Daftar Event</h2>
+<div id="eventList"></div>
+
+<script>
+fetch("/tiket-event/backend/api/events.php")
+    .then(res => res.json())
+    .then(res => {
+        if (res.status !== "success") return;
+
+        const container = document.getElementById("eventList");
+
+        res.data.forEach(event => {
+            const div = document.createElement("div");
+            div.innerHTML = `
+                <h3>${event.title}</h3>
+                <p>Kategori: ${event.category}</p>
+                <p>Lokasi: ${event.location}</p>
+                <p>Tanggal: ${event.event_date}</p>
+                <p>Harga: Rp ${event.price}</p>
+                <p>Sisa Kuota: ${event.quota}</p>
+                <hr>
+            `;
+            container.appendChild(div);
+        });
+    });
+</script>
